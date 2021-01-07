@@ -6,8 +6,10 @@ import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 
 //Global Variables
+
 Minim  minim; //creates object to access all functions
 AudioPlayer song_1; //creates PLaylist variable holding extension WAV, AIFF, AU, SND, MP3
+
 void setup() {
   fullScreen();
   minim = new Minim(this); //load from data directory, loadfile should also load from project folder, like loadImage
@@ -15,4 +17,5 @@ void setup() {
   song_1.play();
 }
 
-void draw() {}
+void draw() {
+}
