@@ -1,77 +1,49 @@
 import controlP5.*;
-
-ControlP5 controlP5;
-MultiList l;
-
-void setup() {
-  size(700, 400);
-  frameRate(30);
-  controlP5 = new ControlP5(this);
-
-  // add a multiList to controlP5.
-  // elements of the list have default dimensions
-  // here, a width of 100 and a height of 12
-  l = controlP5.addMultiList("myList", 20, 20, 100, 12);
-
-  // create a multiListButton which we will use to
-  // add new buttons to the multilist
-  MultiListButton b;
-  b = l.add("level1", 1);
-
-  // add items to a sublist of button "level1"
-  b.add("level11", 11).setLabel("level1 item1");
-  b.add("level12", 12).setLabel("level1 item2");
-
-  b = l.add("level2", 2);
-
-  int cnt = 100;
-
-  // add some more sublists.
-  for (int i=0; i<10; i++) {
-    MultiListButton c = b.add("level2"+(i+1), 20+i+1);
-    c.setLabel("level2 item"+(i+1));
-    c.setColorBackground(color(64 + 18*i, 0, 0));
-
-    if (i==4) {
-      // changing the width and the height of a button
-      // will be inherited by its sublists.
-      c.setWidth(100);
-      c.setHeight(20);
-    }
-    cnt++;
-
-    if (i==4) {
-      for (int j=0; j<10; j++) {
-        cnt++;
-        MultiListButton d;
-        d = c.add("level2"+i+""+j, 250+j+1);
-        d.setLabel("level2 item"+(i+1)+" "+"item"+(j+1));
-        d.setColorBackground(color(64 + 18*j, (64 + 18*j)/2, 0));
-        d.setId(cnt);
-        d.setWidth(200);
-      }
-    }
+ 
+ 
+DropdownList menu1, menu2;
+ControlP5 cp5;
+ 
+void setup()
+{
+  size(400, 600);
+  cp5 = new ControlP5(this);
+ 
+  menu1 = cp5.addDropdownList("menu1")
+    .setPosition(10, 100);
+  menu1.addItem("New", 0);
+  menu1.addItem("Load", 1);
+  menu1.addItem("Save", 2);
+  menu1.addItem("Save As", 3);
+  menu1.addItem("Exit", 4);
+  ;
+ 
+  menu2 = cp5.addDropdownList("menu2")
+    .setPosition(200, 100);
+  menu2.addItem("Play", 0);
+  menu2.addItem("Pause", 1);
+  menu2.addItem("Stop", 2);
+  menu2.addItem("Forward", 3);
+  menu2.addItem("Back", 4);
+}
+ 
+void draw()
+{
+  background(127);
+}
+ 
+void controlEvent(ControlEvent theControlEvent) 
+{
+  if (theControlEvent.isFrom(menu1))
+  {
+    println("Menu 1");
   }
-
-  MultiListButton cc = (MultiListButton)controlP5.controller("level21");
-  cc.setHeight(40);
-}
-
-
-void controlEvent(ControlEvent theEvent) {
-  println(theEvent.controller().name()+" = "+theEvent.value());  
-  // uncomment the line below to remove a multilist item when clicked.
-  // theEvent.controller().remove();
-}
-
-
-void draw() {
-  background(0);
-}
-
-void keyPressed() {
-  if (controlP5.controller("level23")!=null) {
-    println("removing multilist button level23.");
-    controlP5.controller("level23").remove();
+  if (theControlEvent.getName().equals("menu2"))
+  {
+    println("Menu 2");
+  }
+ 
+  if (theControlEvent.isGroup()) {
+    println("event from group : "+theControlEvent.getGroup().getValue()+" from "+theControlEvent.getGroup());
   }
 }
