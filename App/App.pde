@@ -10,6 +10,8 @@ import ddf.minim.ugens.*;
 Minim  minim; //creates object to access all functions
 AudioPlayer song_1; //creates PLaylist variable holding extension WAV, AIFF, AU, SND, MP3
 
+int loop_int_num = 1; 
+
 void setup() {
   fullScreen();
   minim = new Minim(this); //load from data directory, loadfile should also load from project folder, like loadImage
@@ -49,7 +51,7 @@ void keyPressed() {
   if (key == 'r' || key == 'R') {
     song_1.skip(-5000);
   }
-  if (key == '' || key == '') {
-    song_1.loop();
+  if (key == 'l' || key == 'L') {
+    song_1.loop(loop_int_num);
   }
 }

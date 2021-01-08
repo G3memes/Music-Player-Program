@@ -1,28 +1,43 @@
 import ddf.minim.*;
-import ddf.minim.analysis.*;
-import ddf.minim.effects.*;
-import ddf.minim.signals.*;
-import ddf.minim.spi.*;
-import ddf.minim.ugens.*;
 
-//Global Variables
+Minim minim;
+AudioPlayer song_1;
+int loop_count;
 
-Minim  minim; //creates object to access all functions
-AudioPlayer song_1; //creates PLaylist variable holding extension WAV, AIFF, AU, SND, MP3
+void setup()
+{
+  size(512, 200, P3D);
 
-void setup() {
-  fullScreen();
-  minim = new Minim(this); //load from data directory, loadfile should also load from project folder, like loadImage
-  song_1 = minim.loadFile("../Music/Aaron Smith - Dancin (KRONO Remix).mp3");//able to pass absolute path, file name, and URL
-  song_1.play();
+  minim = new Minim(this);
+  song_1 = minim.loadFile("song_1.mp3", 2048);
   
   textFont(createFont("Arial", 12));
 }
 
-void draw() {
+void draw()
+{
   background(0);
-  
-  stroke(255);
-  for(int i = 0; i < groove.bufferSize() - 1; i+++
 
+  stroke(255);
+  
+  for(int i = 0; i < song_1.bufferSize() - 1; i++)
+  {
+    line(i, 50  + song_1.left.get(i)*50,  i+1, 50  + song_1.left.get(i+1)*50);
+    line(i, 150 + song_1.right.get(i)*50, i+1, 150 + song_1.right.get(i+1)*50);
+  }
+  
+  text("The player has " + song_1.loopCount() + " loops left." 
+     + " Is playing: " + song_1.isPlaying() 
+     + ", Is looping: " + song_1.isLooping(), 5, 15);
+}
+
+void keyPressed()
+{
+  String keystr = String.valueOf(key);
+  int num = int(keystr);
+  if ( num > 0 && num < 10 )
+  {
+    song_1.loop(num);
+    loop_count = num;
+  }    
 }
