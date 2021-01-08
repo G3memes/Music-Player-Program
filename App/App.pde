@@ -6,14 +6,21 @@ import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 
 //Global Variables
+float play_but_x, play_but_y, play_but_diameter;
+float play_tri_1_x, play_tri_1_y, play_tri_2_x, play_tri_2_y, play_tri_3_x, play_tri_3_y;
+int loop_int_num = 1; 
+color white;
+
+
 
 Minim  minim; //creates object to access all functions
 AudioPlayer song_1; //creates PLaylist variable holding extension WAV, AIFF, AU, SND, MP3
 
-int loop_int_num = 1; 
-
 void setup() {
   fullScreen();
+  populating_variables();
+  background(white);
+  music_player_setup();
   minim = new Minim(this); //load from data directory, loadfile should also load from project folder, like loadImage
   song_1 = minim.loadFile("../Music/Aaron Smith - Dancin (KRONO Remix).mp3");//able to pass absolute path, file name, and URL
   song_1.play();
@@ -21,6 +28,9 @@ void setup() {
 
 void draw() {
   println(song_1.position()/1000 + " seconds");
+}
+
+void mousePressed() {
 }
 
 void keyPressed() {

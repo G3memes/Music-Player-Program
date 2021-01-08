@@ -21,7 +21,6 @@ void setup() {
     .addItems(l)
     // .setType(ScrollableList.LIST) // currently supported DROPDOWN and LIST
     ;
-  selectFolder("Select a folder to process:", "folderSelected");
 }
 
 
