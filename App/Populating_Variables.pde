@@ -1,5 +1,6 @@
 void populating_variables(){
   white = #FFFFFF;
+  black = #000000;
   
   play_but_x = displayWidth*1/2;
   play_but_y = displayHeight*18/20;

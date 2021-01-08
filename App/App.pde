@@ -9,7 +9,7 @@ import ddf.minim.ugens.*;
 float play_but_x, play_but_y, play_but_diameter;
 float play_tri_1_x, play_tri_1_y, play_tri_2_x, play_tri_2_y, play_tri_3_x, play_tri_3_y;
 int loop_int_num = 1; 
-color white;
+color white, black;
 
 
 
