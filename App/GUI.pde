@@ -1,10 +1,10 @@
 void music_player_setup() {
   //play button
+  rect(play_rect_x_1, play_rect_y_1, play_rect_width_1, play_rect_height_1);
   fill(black);
   circle(play_but_x, play_but_y, play_but_diameter);
   fill(white);
   triangle(play_tri_1_x, play_tri_1_y, play_tri_2_x, play_tri_2_y, play_tri_3_x, play_tri_3_y);
-
   //fast forward button
   //circle(,,);
   //triangle(,,,,,);
