@@ -43,4 +43,10 @@ void music_player_setup() {
   //Volume down
   //circle(,,);
   //line(,,,);
+  
+  //Quit button
+  //rect(,,,);
+  //text(,,,,);
+  
+
 }

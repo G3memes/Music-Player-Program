@@ -18,4 +18,38 @@ void setup() {
 }
 
 void draw() {
+  println(song_1.position()/1000 + " seconds");
+}
+
+void keyPressed() {
+  //play pause button
+  if (key == 'p' || key == 'P' ) {
+    if (song_1.isPlaying()) {
+      song_1.pause();
+    } else if (song_1.position() == song_1.length()) {
+      song_1.rewind();
+      song_1.play();
+    } else {
+      song_1.play();
+    }
+  }
+  if (key == 's' || key == 'S' ) {
+    if (song_1.isPlaying()) {
+      song_1.pause();
+      song_1.rewind();
+    } else if (song_1.position() == song_1.length()) {
+      song_1.rewind();
+    } else {
+      song_1.rewind();
+    }
+  }
+  if (key == 'f' || key == 'F') { 
+    song_1.skip(5000);
+  }
+  if (key == 'r' || key == 'R') {
+    song_1.skip(-5000);
+  }
+  if (key == '' || key == '') {
+    song_1.loop();
+  }
 }
