@@ -23,7 +23,7 @@ void setup() {
   music_player_setup();
   minim = new Minim(this); //load from data directory, loadfile should also load from project folder, like loadImage
   song_1 = minim.loadFile("../Music/Aaron Smith - Dancin (KRONO Remix).mp3");//able to pass absolute path, file name, and URL
-  song_1.play();
+  //song_1.play();
 }
 
 void draw() {
