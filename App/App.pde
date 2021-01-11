@@ -25,14 +25,16 @@ boolean playing;
 boolean paused;
 int number_of_songs = 5;
 int number_of_acc_songs;
-int currentSong = 0;
+int currentSong = number_of_songs - number_of_songs;
 int song_length;
 int song_playing = 0;
 boolean end_of_list;
 boolean next;
+boolean need_meta_data;
 
 Minim  minim; //creates object to access all functions
 AudioPlayer[] song = new AudioPlayer[number_of_songs]; 
+AudioMetaData[] song_meta_data = new AudioMetaData[number_of_songs];
 
 void setup() {
   fullScreen();
@@ -41,15 +43,30 @@ void setup() {
   background(white);
   music_player_setup();
   minim = new Minim(this); //load from data directory, loadfile should also load from project folder, like loadImage
-  song[0] = minim.loadFile("../Music/Aaron Smith - Dancin (KRONO Remix).mp3");
-  song[1] = minim.loadFile("../Music/Sean Kingston - Beautiful Girls.mp3");
-  song[2] = minim.loadFile("../Music/Bruno Mars - Marry You [Official Lyric Video].mp3");
-  song[3] = minim.loadFile("../Music/Eminem ft. Rihanna - The Monster (Lyrics).mp3");
-  song[4] = minim.loadFile("../Music/ALEXANDRA STAN - Mr. Saxobeat.mp3");
+  song[currentSong] = minim.loadFile("../Music/Aaron Smith - Dancin (KRONO Remix).mp3");
+  song[currentSong+=1] = minim.loadFile("../Music/Sean Kingston - Beautiful Girls.mp3");
+  song[currentSong+=1] = minim.loadFile("../Music/Bruno Mars - Marry You [Official Lyric Video].mp3");
+  song[currentSong+=1] = minim.loadFile("../Music/Eminem ft. Rihanna - The Monster (Lyrics).mp3");
+  song[currentSong+=1] = minim.loadFile("../Music/ALEXANDRA STAN - Mr. Saxobeat.mp3");
+  //
+  currentSong = number_of_songs - number_of_songs;
+  for (int i=currentSong; i<number_of_songs; i++) {
+    song_meta_data[i] = song[i].getMetaData();
+  }//End FOR Loop, Loading Meta Data
+  //
   end_of_list = false;
   next = false;
+  //Instructions
+  println("Start of Console");
+  println("Click the Canvas to Finish Starting this program");
+  println("Press P to Play and Pause, will rewind when at the end");
+  println("Press S to Stop and rewind to the beginning");
+  println("Press L to loop the song");
+  //
+  meta_data();
+  //Verifying Meta Data
+  //Always available
 }
-
 void draw() {
   //println(song[currentSong].position()+ " seconds");
   if (song[currentSong].isPlaying()) {
@@ -65,18 +82,22 @@ void draw() {
     fill(white);
     triangle(play_tri_1_x, play_tri_1_y, play_tri_2_x, play_tri_2_y, play_tri_3_x, play_tri_3_y);
   }
-  println(song[currentSong].length());
-  println(song[currentSong].position());
+  if (need_meta_data == true) {
+    meta_data();
+    need_meta_data = false;
+  }
+  //println(song[currentSong].length());
+  //println(song[currentSong].position());
   if (end_of_list == true) {
     if (song[4].position() == song[4].length()-288) {
       currentSong = 0;
       song[0].rewind();
       song[0].play();
+      meta_data();
       end_of_list = false;
     }
   }
 }
-
 void mousePressed() {
   play_button();
   next_button();

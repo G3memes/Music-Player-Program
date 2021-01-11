@@ -11,6 +11,7 @@ void next_button() {
         song[currentSong].rewind();
         song[currentSong].play();
         println(currentSong);
+        need_meta_data = true;
       }
     }
   }
