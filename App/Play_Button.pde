@@ -32,7 +32,7 @@ void play_button() {
       if (colour == white) {
         song[currentSong].pause();
       }
-    } else if (song[currentSong].position() >= song[currentSong].length()-500) {
+    } else if (song[currentSong].position() >= song[currentSong].length()-800) {
       if (currentSong < number_of_acc_songs) {
         currentSong = currentSong+1;
         song[currentSong].play();
