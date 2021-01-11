@@ -20,6 +20,7 @@ float pause_x_2, pause_y_2;
 float colour;
 int loop_int_num = 1; 
 color white, black;
+int i;
 int x, y;
 boolean playing;
 boolean paused;
@@ -42,31 +43,17 @@ void setup() {
   frameRate(60);
   background(white);
   music_player_setup();
-  minim = new Minim(this); //load from data directory, loadfile should also load from project folder, like loadImage
-  song[currentSong] = minim.loadFile("../Music/Aaron Smith - Dancin (KRONO Remix).mp3");
-  song[currentSong+=1] = minim.loadFile("../Music/Sean Kingston - Beautiful Girls.mp3");
-  song[currentSong+=1] = minim.loadFile("../Music/Bruno Mars - Marry You [Official Lyric Video].mp3");
-  song[currentSong+=1] = minim.loadFile("../Music/Eminem ft. Rihanna - The Monster (Lyrics).mp3");
-  song[currentSong+=1] = minim.loadFile("../Music/ALEXANDRA STAN - Mr. Saxobeat.mp3");
-  //
-  currentSong = number_of_songs - number_of_songs;
-  for (int i=currentSong; i<number_of_songs; i++) {
-    song_meta_data[i] = song[i].getMetaData();
-  }//End FOR Loop, Loading Meta Data
-  //
+  load_songs();
+  currentSong = 0;
   end_of_list = false;
   next = false;
-  //Instructions
-  println("Start of Console");
-  println("Click the Canvas to Finish Starting this program");
-  println("Press P to Play and Pause, will rewind when at the end");
-  println("Press S to Stop and rewind to the beginning");
-  println("Press L to loop the song");
-  //
+  instructions();
+  for (int i = currentSong; i<number_of_songs; i++) {
+    song_meta_data[i] = song[i].getMetaData();
+  }//End FOR Loop, Loading Meta Data
   meta_data();
-  //Verifying Meta Data
-  //Always available
 }
+
 void draw() {
   //println(song[currentSong].position()+ " seconds");
   if (song[currentSong].isPlaying()) {
@@ -103,34 +90,5 @@ void mousePressed() {
   next_button();
 }
 void keyPressed() {
-  //play pause button
-  if (key == 'p' || key == 'P' ) {
-    if (song[currentSong].isPlaying()) {
-      song[currentSong].pause();
-    } else if (song[currentSong].position() == song[currentSong].length()) {
-      song[currentSong].rewind();
-      song[currentSong].play();
-    } else {
-      song[currentSong].play();
-    }
-  }
-  if (key == 's' || key == 'S' ) {
-    if (song[currentSong].isPlaying()) {
-      song[currentSong].pause();
-      song[currentSong].rewind();
-    } else if (song[currentSong].position() == song[currentSong].length()) {
-      song[currentSong].rewind();
-    } else {
-      song[currentSong].rewind();
-    }
-  }
-  if (key == 'f' || key == 'F') { 
-    song[currentSong].skip(70000);
-  }
-  if (key == 'r' || key == 'R') {
-    song[currentSong].skip(-5000);
-  }
-  if (key == 'l' || key == 'L') {
-    song[currentSong].loop(loop_int_num);
-  }
+  key_shortcut();
 }
