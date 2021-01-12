@@ -42,7 +42,7 @@ void key_shortcut() {
         }
       }
     }
-    println( song[currentSong].position());
+    println(song[currentSong].position());
   }
   if (key == 'r' || key == 'R') {
     song[currentSong].skip(-5000);
