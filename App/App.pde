@@ -74,7 +74,6 @@ void setup() {
   for (int i = currentSong; i<number_of_songs; i++) {
     song_meta_data[i] = song[i].getMetaData();
   }
-
   meta_data();
 }
 
@@ -101,7 +100,4 @@ void mousePressed() {
   play_button();
   next_button();
   prev_button();
-}
-void keyPressed() {
-  key_shortcut();
 }
