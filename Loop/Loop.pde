@@ -1,43 +1,41 @@
 import ddf.minim.*;
 
 Minim minim;
-AudioPlayer song_1;
-int loop_count;
+AudioPlayer groove;
+AudioMetaData meta;
 
 void setup()
 {
-  size(512, 200, P3D);
-
-  minim = new Minim(this);
-  song_1 = minim.loadFile("song_1.mp3", 2048);
+  size(512, 256, P2D);
   
-  textFont(createFont("Arial", 12));
+  minim = new Minim(this);
+  groove = minim.loadFile("../Music/Aaron Smith - Dancin (KRONO Remix).mp3");
+  meta = groove.getMetaData();
+  
+  textFont(createFont("Serif", 12));
 }
+
+int ys = 25;
+int yi = 15;
 
 void draw()
 {
   background(0);
-
-  stroke(255);
-  
-  for(int i = 0; i < song_1.bufferSize() - 1; i++)
-  {
-    line(i, 50  + song_1.left.get(i)*50,  i+1, 50  + song_1.left.get(i+1)*50);
-    line(i, 150 + song_1.right.get(i)*50, i+1, 150 + song_1.right.get(i+1)*50);
-  }
-  
-  text("The player has " + song_1.loopCount() + " loops left." 
-     + " Is playing: " + song_1.isPlaying() 
-     + ", Is looping: " + song_1.isLooping(), 5, 15);
-}
-
-void keyPressed()
-{
-  String keystr = String.valueOf(key);
-  int num = int(keystr);
-  if ( num > 0 && num < 10 )
-  {
-    song_1.loop(num);
-    loop_count = num;
-  }    
+  int y = ys;
+  text("File Name: " + meta.fileName(), 5, y);
+  text("Length (in milliseconds): " + meta.length(), 5, y+=yi);
+  text("Title: " + meta.title(), 5, y+=yi);
+  text("Author: " + meta.author(), 5, y+=yi); 
+  text("Album: " + meta.album(), 5, y+=yi);
+  text("Date: " + meta.date(), 5, y+=yi);
+  text("Comment: " + meta.comment(), 5, y+=yi);
+  text("Lyrics: " + meta.lyrics(), 5, y+=yi ); 
+  text("Track: " + meta.track(), 5, y+=yi);
+  text("Genre: " + meta.genre(), 5, y+=yi);
+  text("Copyright: " + meta.copyright(), 5, y+=yi);
+  text("Disc: " + meta.disc(), 5, y+=yi);
+  text("Composer: " + meta.composer(), 5, y+=yi);
+  text("Orchestra: " + meta.orchestra(), 5, y+=yi);
+  text("Publisher: " + meta.publisher(), 5, y+=yi);
+  text("Encoded: " + meta.encoded(), 5, y+=yi);
 }

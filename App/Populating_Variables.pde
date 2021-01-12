@@ -89,7 +89,14 @@ void populating_variables() {
   prev_rect_y_1 = displayHeight*71/80;
   prev_rect_width_1 = displayWidth*33/1000;
   prev_rect_height_1 = displayHeight*17/640;
-
-
+  
+  //Description
+  desc_x = displayWidth*1/4;
+  desc_y = displayHeight*16/20;
+  desc_width = displayWidth*1/2;
+  desc_height = displayHeight*1/20;
+  
+  font = createFont("Arial", 55);
+  
   number_of_acc_songs = number_of_songs - 1;
 }

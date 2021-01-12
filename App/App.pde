@@ -26,6 +26,9 @@ float prev_lin_x_1, prev_lin_y_1, prev_lin_width_1, prev_lin_height_1;
 float prev_rect_x, prev_rect_y, prev_rect_width, prev_rect_height;
 float prev_rect_x_1, prev_rect_y_1, prev_rect_width_1, prev_rect_height_1;
 //
+float desc_x, desc_y, desc_width, desc_height;
+String desc_text;
+//
 float colour;
 //
 color white, black;
@@ -44,6 +47,8 @@ int song_playing = 0;
 int i;
 int x, y;
 int loop_int_num = 1; 
+//
+PFont font;
 
 
 Minim  minim; //creates object to access all functions
@@ -74,12 +79,22 @@ void setup() {
   for (int i = currentSong; i<number_of_songs; i++) {
     song_meta_data[i] = song[i].getMetaData();
   }
+  desc_text = "Title: " + song_meta_data[0].title();
   meta_data();
 }
 
 void draw() {
   //println(song[currentSong].position()+ " seconds");
+
+  //Description
+  //rect(desc_x, desc_y, desc_width, desc_height);
+  textFont(font, 20); 
+  desc_text = song_meta_data[currentSong].title();
+  fill(black);
+  text(desc_text, desc_x, desc_y, desc_width, desc_height);
+
   constant_gui();
+
   if (need_meta_data == true) {
     meta_data();
     need_meta_data = false;
