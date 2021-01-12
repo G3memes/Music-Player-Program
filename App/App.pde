@@ -6,6 +6,7 @@ import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 
 //Global Variables
+
 float play_but_x, play_but_y, play_but_diameter;
 float play_tri_1_x, play_tri_1_y, play_tri_2_x, play_tri_2_y, play_tri_3_x, play_tri_3_y;
 float play_rect_x, play_rect_y, play_rect_width, play_rect_height;
@@ -27,7 +28,10 @@ float prev_rect_x, prev_rect_y, prev_rect_width, prev_rect_height;
 float prev_rect_x_1, prev_rect_y_1, prev_rect_width_1, prev_rect_height_1;
 //
 float desc_x, desc_y, desc_width, desc_height;
+float time_x, time_y, time_width, time_height;
 String desc_text;
+String timer_text;
+String song_total_length_text;
 //
 float colour;
 //
@@ -38,6 +42,8 @@ boolean paused;
 boolean end_of_list;
 boolean next;
 boolean need_meta_data;
+boolean reset_time;
+boolean recalculate_time;
 //
 int number_of_songs = 5;
 int number_of_acc_songs;
@@ -47,9 +53,14 @@ int song_playing = 0;
 int i;
 int x, y;
 int loop_int_num = 1; 
+int timer_s = 0;
+int timer_data_m;
+int timer_data_s;
+int time;
+int song_total_length_m;
+int song_total_length_s;
 //
 PFont font;
-
 
 Minim  minim; //creates object to access all functions
 AudioPlayer[] song = new AudioPlayer[number_of_songs]; 
@@ -57,62 +68,30 @@ AudioMetaData[] song_meta_data = new AudioMetaData[number_of_songs];
 
 void setup() {
   fullScreen();
-
   populating_variables();
-
   frameRate(60);
-
   background(white);
-
-  music_player_setup();
-
   load_songs();
-
-  currentSong = 0;
-
-  end_of_list = false;
-
-  next = false;
-
   instructions();
-
   for (int i = currentSong; i<number_of_songs; i++) {
     song_meta_data[i] = song[i].getMetaData();
   }
-  desc_text = "Title: " + song_meta_data[0].title();
-  meta_data();
+  music_player_setup();
 }
 
 void draw() {
-  //println(song[currentSong].position()+ " seconds");
-
-  //Description
-  //rect(desc_x, desc_y, desc_width, desc_height);
-  textFont(font, 20); 
-  desc_text = song_meta_data[currentSong].title();
-  fill(black);
-  text(desc_text, desc_x, desc_y, desc_width, desc_height);
-
   constant_gui();
-
-  if (need_meta_data == true) {
-    meta_data();
-    need_meta_data = false;
-  }
-  //println(song[currentSong].length());
-  //println(song[currentSong].position());
-  if (end_of_list == true) {
-    if (song[4].position() == song[4].length()-288) {
-      currentSong = 0;
-      song[0].rewind();
-      song[0].play();
-      meta_data();
-      end_of_list = false;
-    }
-  }
+  timer();
+  retrieve_meta_data();
+  end_of_list();
 }
 void mousePressed() {
   play_button();
   next_button();
   prev_button();
+}
+void keyPressed() {
+  if (key == 'f' || key == 'F') {
+    song[currentSong].skip(5000);
+  }
 }

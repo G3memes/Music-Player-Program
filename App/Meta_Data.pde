@@ -13,4 +13,6 @@ void meta_data() {
   println("Track: ", song_meta_data[currentSong].track() );
   println("Genre: ", song_meta_data[currentSong].genre() );
   println("Encoded: ", song_meta_data[currentSong].encoded() ); //how a computer reads the file
+
+
 }

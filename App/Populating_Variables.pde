@@ -84,19 +84,31 @@ void populating_variables() {
   prev_rect_y = displayHeight*555/640;
   prev_rect_width = displayWidth*37/1000;
   prev_rect_height = displayHeight*43/640;
-  
+
   prev_rect_x_1 = displayWidth*123/320;
   prev_rect_y_1 = displayHeight*71/80;
   prev_rect_width_1 = displayWidth*33/1000;
   prev_rect_height_1 = displayHeight*17/640;
-  
+
   //Description
   desc_x = displayWidth*1/4;
-  desc_y = displayHeight*16/20;
+  desc_y = displayHeight*29/40;
   desc_width = displayWidth*1/2;
   desc_height = displayHeight*1/20;
-  
+
+  //Timer
+  time_x = displayWidth*1/4;
+  time_y = displayHeight*31/40;
+  time_width = displayWidth*1/2;
+  time_height = displayHeight*1/20;
+
   font = createFont("Arial", 55);
-  
+
   number_of_acc_songs = number_of_songs - 1;
+
+  currentSong = 0;
+  end_of_list = false;
+  next = false;
+  reset_time = true;
+  recalculate_time = false;
 }

@@ -6,6 +6,7 @@ void prev_button() {
       colour = get(x, y);
       if (colour == black) {
         if (currentSong == 1) {
+          reset_time = true;
           song[currentSong].pause();
           song_length = song[currentSong].position();
           song[currentSong].skip(-song_length);
@@ -16,6 +17,7 @@ void prev_button() {
           need_meta_data = true;
           end_of_list = true;
         } else {
+          reset_time = true;
           song[currentSong].pause();
           song_length = song[currentSong].position();
           song[currentSong].skip(-song_length);
@@ -33,6 +35,7 @@ void prev_button() {
       colour = get(x, y);
       if (colour == white) {
         if (currentSong == 1) {
+          reset_time = true;
           song[currentSong].pause();
           song_length = song[currentSong].position();
           song[currentSong].skip(-song_length);
@@ -44,6 +47,7 @@ void prev_button() {
           end_of_list = true;
           println(currentSong);
         } else {
+          reset_time = true;
           song[currentSong].pause();
           song_length = song[currentSong].position();
           song[currentSong].skip(-song_length);
@@ -61,11 +65,12 @@ void prev_button() {
       y = mouseY;
       colour = get(x, y);
       if (colour == black) {
+        reset_time = true;
         song[currentSong].pause();
         song[4].rewind();
         song[4].play();
         currentSong = 4;
-        meta_data();
+        need_meta_data = true;
         end_of_list = false;
         println(currentSong);
       }
@@ -75,11 +80,12 @@ void prev_button() {
       y = mouseY;
       colour = get(x, y);
       if (colour == white) {
+        reset_time = true;
         song[currentSong].pause();
         currentSong = 4;
         song[4].rewind();
         song[4].play();
-        meta_data();
+        need_meta_data = true;
         end_of_list = false;
       }
     }

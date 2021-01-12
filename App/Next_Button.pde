@@ -9,6 +9,7 @@ void next_button() {
             y = mouseY;
             colour = get(x, y);
             if (colour == black) {
+              reset_time = true;
               song_length = song[currentSong].length();
               song[currentSong].skip(song_length);
               currentSong = currentSong+1;
@@ -21,6 +22,7 @@ void next_button() {
           }
         } else {
           song_length = song[currentSong].length();
+          reset_time = true;
           song[currentSong].skip(song_length);
           currentSong = currentSong+1;
           song[currentSong].rewind();
@@ -41,6 +43,7 @@ void next_button() {
             y = mouseY;
             colour = get(x, y);
             if (colour == black) {
+              reset_time = true;
               song_length = song[currentSong].length();
               song[currentSong].skip(song_length);
               currentSong = currentSong+1;
@@ -52,6 +55,7 @@ void next_button() {
             }
           }
         } else {
+          reset_time = true;
           song_length = song[currentSong].length();
           song[currentSong].skip(song_length);
           currentSong = currentSong+1;
@@ -68,11 +72,12 @@ void next_button() {
       y = mouseY;
       colour = get(x, y);
       if (colour == white) {
+        reset_time = true;
         song[currentSong].pause();
         currentSong = 0;
         song[0].rewind();
         song[0].play();
-        meta_data();
+        need_meta_data = true;
         end_of_list = false;
       }
     }
@@ -81,11 +86,12 @@ void next_button() {
       y = mouseY;
       colour = get(x, y);
       if (colour == black) {
+        reset_time = true;
         song[currentSong].pause();
         currentSong = 0;
         song[0].rewind();
         song[0].play();
-        meta_data();
+        need_meta_data = true;
         end_of_list = false;
       }
     }
