@@ -111,4 +111,9 @@ void populating_variables() {
   next = false;
   reset_time = true;
   recalculate_time = false;
+  
+  mini_back_x = displayWidth*1/5;
+  mini_back_y = displayHeight*0;
+  mini_back_width = displayWidth*1;
+  mini_back_height = displayHeight*1/2;
 }

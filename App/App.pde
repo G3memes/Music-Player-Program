@@ -4,9 +4,14 @@ import ddf.minim.effects.*;
 import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
+import controlP5.*;
+import java.util.*;
+
 
 //Global Variables
 
+float mini_back_x, mini_back_y, mini_back_width, mini_back_height;
+//
 float play_but_x, play_but_y, play_but_diameter;
 float play_tri_1_x, play_tri_1_y, play_tri_2_x, play_tri_2_y, play_tri_3_x, play_tri_3_y;
 float play_rect_x, play_rect_y, play_rect_width, play_rect_height;
@@ -32,6 +37,12 @@ float time_x, time_y, time_width, time_height;
 String desc_text;
 String timer_text;
 String song_total_length_text;
+//
+String list_1;
+String list_2;
+String list_3;
+String list_4;
+String list_5;
 //
 float colour;
 //
@@ -61,6 +72,11 @@ int song_total_length_m;
 int song_total_length_s;
 //
 PFont font;
+//
+String absolute;
+
+ControlP5 cp5;
+ControlFont cf1;
 
 Minim  minim; //creates object to access all functions
 AudioPlayer[] song = new AudioPlayer[number_of_songs]; 
@@ -77,9 +93,13 @@ void setup() {
     song_meta_data[i] = song[i].getMetaData();
   }
   music_player_setup();
+  scrollable_list();
 }
 
 void draw() {
+  noStroke();
+  fill(white);
+  rect(mini_back_x, mini_back_y, mini_back_width, mini_back_height);
   constant_gui();
   timer();
   retrieve_meta_data();
@@ -95,5 +115,43 @@ void mousePressed() {
 void keyPressed() {
   if (key == 'f' || key == 'F') {
     song[currentSong].skip(5000);
+  }
+}
+void dropdown(int n) {
+  println(n, cp5.get(ScrollableList.class, "dropdown").getItem(n));
+  if (n == 0) {
+    song[currentSong].pause();
+    currentSong = 0;
+    need_meta_data = true;
+    song[currentSong].rewind();
+    song[currentSong].play();
+  }
+  if (n == 1) {
+    song[currentSong].pause();
+    currentSong = 1;
+    need_meta_data = true;
+    song[currentSong].rewind();
+    song[currentSong].play();
+  }
+  if (n == 2) {
+    song[currentSong].pause();
+    currentSong = 2;
+    need_meta_data = true;
+    song[currentSong].rewind();
+    song[currentSong].play();
+  }
+  if (n == 3) {
+    song[currentSong].pause();
+    currentSong = 3;
+    need_meta_data = true;
+    song[currentSong].rewind();
+    song[currentSong].play();
+  }
+  if (n == 4) {
+    song[currentSong].pause();
+    currentSong = 4;
+    need_meta_data = true;
+    song[currentSong].rewind();
+    song[currentSong].play();
   }
 }
