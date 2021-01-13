@@ -1,21 +1,23 @@
 void timer() {
   if (reset_time == true) {
-    time = 59;
+    time = 60;
     reset_time = false;
   }
   if (timer_data_s < 60) {
     timer_data_m = (song[currentSong].position()/1000)/60;
     timer_data_s = (song[currentSong].position()/1000);
     timer_s = timer_data_s;
-  } else if (timer_data_s > (time+60)) {
+  } else if (timer_data_s >= (time+60)) {
     timer_data_m = (song[currentSong].position()/1000)/60;
     timer_data_s = (song[currentSong].position()/1000);
-    timer_s = timer_data_s - (time+1);
-    recalculate_time = true;
+    timer_s = timer_data_s - (time);
+    if (timer_s > 59) {
+      recalculate_time = true;
+    }
   } else {
     timer_data_m = (song[currentSong].position()/1000)/60;
     timer_data_s = (song[currentSong].position()/1000);
-    timer_s = timer_data_s - (time+1);
+    timer_s = timer_data_s - (time);
   }
   if (recalculate_time == true) {
     time = time+60;

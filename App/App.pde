@@ -59,7 +59,6 @@ boolean recalculate_time;
 int number_of_songs = 5;
 int number_of_acc_songs;
 int currentSong = 0;
-int song_length;
 int song_playing = 0;
 int i;
 int x, y;
@@ -100,6 +99,7 @@ void draw() {
   noStroke();
   fill(white);
   rect(mini_back_x, mini_back_y, mini_back_width, mini_back_height);
+  end_of_song();
   constant_gui();
   timer();
   retrieve_meta_data();

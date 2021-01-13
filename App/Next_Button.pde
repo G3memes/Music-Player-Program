@@ -10,24 +10,20 @@ void next_button() {
             colour = get(x, y);
             if (colour == black) {
               reset_time = true;
-              song_length = song[currentSong].length();
-              song[currentSong].skip(song_length);
+              song[currentSong].pause();
               currentSong = currentSong+1;
               song[currentSong].rewind();
               song[currentSong].play();
-              println(currentSong);
               need_meta_data = true;
               end_of_list = true;
             }
           }
         } else {
-          song_length = song[currentSong].length();
           reset_time = true;
-          song[currentSong].skip(song_length);
+          song[currentSong].pause();
           currentSong = currentSong+1;
           song[currentSong].rewind();
           song[currentSong].play();
-          println(currentSong);
           need_meta_data = true;
         }
       }
@@ -44,24 +40,20 @@ void next_button() {
             colour = get(x, y);
             if (colour == black) {
               reset_time = true;
-              song_length = song[currentSong].length();
-              song[currentSong].skip(song_length);
+              song[currentSong].pause();
               currentSong = currentSong+1;
               song[currentSong].rewind();
               song[currentSong].play();
-              println(currentSong);
               need_meta_data = true;
               end_of_list = true;
             }
           }
         } else {
           reset_time = true;
-          song_length = song[currentSong].length();
-          song[currentSong].skip(song_length);
+          song[currentSong].pause();
           currentSong = currentSong+1;
           song[currentSong].rewind();
           song[currentSong].play();
-          println(currentSong);
           need_meta_data = true;
         }
       }

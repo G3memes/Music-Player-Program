@@ -8,23 +8,17 @@ void prev_button() {
         if (currentSong == 1) {
           reset_time = true;
           song[currentSong].pause();
-          song_length = song[currentSong].position();
-          song[currentSong].skip(-song_length);
           currentSong = currentSong - 1;
           song[currentSong].rewind();
           song[currentSong].play();
-          println(currentSong);
           need_meta_data = true;
           end_of_list = true;
         } else {
           reset_time = true;
           song[currentSong].pause();
-          song_length = song[currentSong].position();
-          song[currentSong].skip(-song_length);
           currentSong = currentSong - 1;
           song[currentSong].rewind();
           song[currentSong].play();
-          println(currentSong);
           need_meta_data = true;
         }
       }
@@ -37,24 +31,17 @@ void prev_button() {
         if (currentSong == 1) {
           reset_time = true;
           song[currentSong].pause();
-          song_length = song[currentSong].position();
-          song[currentSong].skip(-song_length);
           currentSong = currentSong - 1;
           song[currentSong].rewind();
           song[currentSong].play();
-          println(currentSong);
           need_meta_data = true;
           end_of_list = true;
-          println(currentSong);
         } else {
           reset_time = true;
           song[currentSong].pause();
-          song_length = song[currentSong].position();
-          song[currentSong].skip(-song_length);
           currentSong = currentSong - 1;
           song[currentSong].rewind();
           song[currentSong].play();
-          println(currentSong);
           need_meta_data = true;
         }
       }
@@ -72,7 +59,6 @@ void prev_button() {
         currentSong = 4;
         need_meta_data = true;
         end_of_list = false;
-        println(currentSong);
       }
     }
     if (mouseX > prev_rect_x_1 && mouseX < prev_rect_x_1 + prev_rect_width_1 && mouseY > prev_rect_y_1 && mouseY < prev_rect_y_1 + prev_rect_height_1) {

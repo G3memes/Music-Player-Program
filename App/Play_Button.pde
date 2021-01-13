@@ -8,12 +8,6 @@ void play_button() {
         song[currentSong].pause();
         need_meta_data = true;
       }
-    } else if (song[currentSong].position() >= song[currentSong].length()-800) {
-      if (currentSong < number_of_acc_songs) {
-        currentSong = currentSong+1;
-        song[currentSong].play();
-        need_meta_data = true;
-      }
     } else {
       if (colour == black) {
         if (end_of_list == false) {
@@ -33,12 +27,6 @@ void play_button() {
     if (song[currentSong].isPlaying()) {
       if (colour == white) {
         song[currentSong].pause();
-        need_meta_data = true;
-      }
-    } else if (song[currentSong].position() >= song[currentSong].length()-800) {
-      if (currentSong < number_of_acc_songs) {
-        currentSong = currentSong+1;
-        song[currentSong].play();
         need_meta_data = true;
       }
     } else {
