@@ -85,11 +85,13 @@ void draw() {
   retrieve_meta_data();
   end_of_list();
 }
+
 void mousePressed() {
   play_button();
   next_button();
   prev_button();
 }
+
 void keyPressed() {
   if (key == 'f' || key == 'F') {
     song[currentSong].skip(5000);
