@@ -1,6 +1,7 @@
 void populating_variables() {
   white = #FFFFFF;
   black = #000000;
+  grey = #767676;
 
 
   //Play Button
@@ -89,6 +90,16 @@ void populating_variables() {
   prev_rect_y_1 = displayHeight*71/80;
   prev_rect_width_1 = displayWidth*33/1000;
   prev_rect_height_1 = displayHeight*17/640;
+  
+  //Loop All Button
+  loop_cir_x = displayWidth*32/40;
+  loop_cir_y = displayHeight*18/20;;
+  loop_cir_diameter = displayWidth*1/27;
+  
+  loop_rect_x = displayWidth*125/160;
+  loop_rect_y = displayHeight*555/640;
+  loop_rect_width = displayWidth*37/1000;
+  loop_rect_height = displayHeight*43/640;
 
   //Description
   desc_x = displayWidth*1/4;
@@ -111,9 +122,13 @@ void populating_variables() {
   next = false;
   reset_time = true;
   recalculate_time = false;
+  loop_all = false;
+  selected = false;
   
   mini_back_x = displayWidth*1/5;
   mini_back_y = displayHeight*0;
   mini_back_width = displayWidth*1;
   mini_back_height = displayHeight*1/2;
+  
+  loop_all_text = "LOOP ALL";
 }

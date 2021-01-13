@@ -32,6 +32,11 @@ float prev_lin_x_1, prev_lin_y_1, prev_lin_width_1, prev_lin_height_1;
 float prev_rect_x, prev_rect_y, prev_rect_width, prev_rect_height;
 float prev_rect_x_1, prev_rect_y_1, prev_rect_width_1, prev_rect_height_1;
 //
+float loop_cir_x, loop_cir_y, loop_cir_diameter;
+float loop_rect_x, loop_rect_y, loop_rect_width, loop_rect_height;
+float loop_rect_x_1, loop_rect_y_1, loop_rect_width_1, loop_rect_height_1;
+String loop_all_text;
+//
 float desc_x, desc_y, desc_width, desc_height;
 float time_x, time_y, time_width, time_height;
 String desc_text;
@@ -46,7 +51,7 @@ String list_5;
 //
 float colour;
 //
-color white, black;
+color white, black, grey;
 //
 boolean playing;
 boolean paused;
@@ -55,6 +60,8 @@ boolean next;
 boolean need_meta_data;
 boolean reset_time;
 boolean recalculate_time;
+boolean loop_all;
+boolean selected;
 //
 int number_of_songs = 5;
 int number_of_acc_songs;
@@ -103,13 +110,31 @@ void draw() {
   constant_gui();
   timer();
   retrieve_meta_data();
-  end_of_list();
+  //end_of_list();
+  if (loop_all == true) {
+    fill(grey);
+    circle(loop_cir_x, loop_cir_y, loop_cir_diameter);
+    textFont(font, 15); 
+    textAlign(CENTER, CENTER);
+    fill(white);
+    text(loop_all_text, loop_rect_x, loop_rect_y, loop_rect_width, loop_rect_height);
+    selected = true;
+  }
+  if (loop_all == false) {
+    fill(black);
+    circle(loop_cir_x, loop_cir_y, loop_cir_diameter);
+    textFont(font, 15); 
+    textAlign(CENTER, CENTER);
+    fill(white);
+    text(loop_all_text, loop_rect_x, loop_rect_y, loop_rect_width, loop_rect_height);
+  }
 }
 
 void mousePressed() {
   play_button();
   next_button();
   prev_button();
+  loop_all_button();
 }
 
 void keyPressed() {

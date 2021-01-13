@@ -4,7 +4,7 @@ void end_of_list() {
       currentSong = 0;
       song[0].rewind();
       song[0].play();
-      meta_data();
+      need_meta_data = true;
       end_of_list = false;
     }
   }

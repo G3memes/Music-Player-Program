@@ -32,11 +32,14 @@ void  end_of_song() {
     need_meta_data = true;
   }
   if (song[4].position() >= song[4].length()-800) {
-    reset_time = true;
-    song[currentSong].pause();
-    song[currentSong].rewind();
-    currentSong = 0;
-    song[0].play();
-    need_meta_data = true;
+    if (loop_all == true) {
+      reset_time = true;
+      song[currentSong].pause();
+      song[currentSong].rewind();
+      currentSong = 0;
+      song[0].play();
+      song[0].play();
+      need_meta_data = true;
+    }
   }
 }

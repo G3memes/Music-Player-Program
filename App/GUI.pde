@@ -36,9 +36,15 @@ void music_player_setup() {
   rect(prev_lin_x_1, prev_lin_y_1, prev_lin_width_1, prev_lin_height_1);
 
   //Loop one
-  //circle(,,);
-  //rect(,,,);
-  //text(,,,,);
+  fill(white);
+  rect(loop_rect_x, loop_rect_y, loop_rect_width, loop_rect_height);
+  fill(black);
+  circle(loop_cir_x, loop_cir_y, loop_cir_diameter);
+  //rect(loop_rect_x_1, loop_rect_y_1, loop_rect_width_1, loop_rect_height_1);
+  textFont(font, 15); 
+  textAlign(CENTER, CENTER);
+  fill(white);
+  text(loop_all_text, loop_rect_x, loop_rect_y, loop_rect_width, loop_rect_height);
 
   //Loop all
   //circle(,,);
@@ -57,7 +63,7 @@ void music_player_setup() {
   //Quit button
   //rect(,,,);
   //text(,,,,);
-  
+
   //Description
   textFont(font, 25); 
   textAlign(CENTER, CENTER);

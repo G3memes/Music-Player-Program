@@ -15,7 +15,21 @@ void next_button() {
               song[currentSong].rewind();
               song[currentSong].play();
               need_meta_data = true;
-              end_of_list = true;
+              //end_of_list = true;
+            }
+            if (mouseX > next_rect_x_1 && mouseX < next_rect_x_1 + next_rect_width_1 && mouseY > next_rect_y_1 && mouseY < next_rect_y_1 + next_rect_height_1) {
+              x = mouseX;
+              y = mouseY;
+              colour = get(x, y);
+              if (colour == white) {
+                reset_time = true;
+                song[currentSong].pause();
+                currentSong = currentSong+1;
+                song[currentSong].rewind();
+                song[currentSong].play();
+                need_meta_data = true;
+                //end_of_list = true;
+              }
             }
           }
         } else {
@@ -45,7 +59,7 @@ void next_button() {
               song[currentSong].rewind();
               song[currentSong].play();
               need_meta_data = true;
-              end_of_list = true;
+              //end_of_list = true;
             }
           }
         } else {
