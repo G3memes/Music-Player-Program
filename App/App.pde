@@ -94,7 +94,8 @@ int song_total_length_m;
 int song_total_length_s;
 //
 int songLength;
-int TimeStamp = 45;
+int TimeStamp = 0;
+int position;
 float progress_bar_x_start, progress_bar_x_end, progress_bar_y, progress_bar_width, progress_bar_height;
 float progress_back_x, progress_back_y, progress_back_width, progress_back_height;
 //
@@ -134,7 +135,6 @@ void draw() {
   constant_gui();
   timer();
   retrieve_meta_data();
-  //end_of_list();
   if (loop_all == true) {
     fill(grey);
     circle(loop_cir_x, loop_cir_y, loop_cir_diameter);
@@ -169,13 +169,10 @@ void keyPressed() {
   }
 }
 
-int position;
 void mouseReleased() {
   if (mouseX > progress_bar_x_start && mouseX <  progress_bar_x_end && mouseY >= progress_bar_y && mouseY <= progress_bar_y+5) {
     position = int( map(mouseX, progress_bar_x_start, progress_bar_x_end, 0, song[currentSong].length() ) );
     song[currentSong].cue( position );
-    println("true");
   } else {
-    println("false");
   }
 }
