@@ -125,21 +125,7 @@ void setup() {
 
 void draw() {
   //
-  stroke(0);
-  fill(#FFFFFF);
-  //rect(progress_bar_x_start, progress_bar_y, progress_bar_width, progress_bar_height);
-  //background(#FFFFFF);
-  noStroke();
-  rect(progress_back_x, progress_back_y, progress_back_width, progress_back_height);
-  fill(255); 
-  strokeWeight(1);
-  fill(0);
-  strokeWeight(4);
-  stroke(204);
-  line(progress_bar_x_start, progress_bar_y, progress_bar_x_end, progress_bar_y ); //where the progress bar should end
-  stroke(0);
-  TimeStamp = int( map(song[currentSong].position(), 0, song[currentSong].length(), progress_bar_x_start, progress_bar_x_end));
-  line(progress_bar_x_start, progress_bar_y, TimeStamp, progress_bar_y );
+  progress_bar_population();
   //
   noStroke();
   fill(white);
@@ -191,44 +177,5 @@ void mouseReleased() {
     println("true");
   } else {
     println("false");
-  }
-}
-
-void dropdown(int n) {
-  println(n, cp5.get(ScrollableList.class, "dropdown").getItem(n));
-  if (n == 0) {
-    song[currentSong].pause();
-    currentSong = 0;
-    need_meta_data = true;
-    song[currentSong].rewind();
-    song[currentSong].play();
-  }
-  if (n == 1) {
-    song[currentSong].pause();
-    currentSong = 1;
-    need_meta_data = true;
-    song[currentSong].rewind();
-    song[currentSong].play();
-  }
-  if (n == 2) {
-    song[currentSong].pause();
-    currentSong = 2;
-    need_meta_data = true;
-    song[currentSong].rewind();
-    song[currentSong].play();
-  }
-  if (n == 3) {
-    song[currentSong].pause();
-    currentSong = 3;
-    need_meta_data = true;
-    song[currentSong].rewind();
-    song[currentSong].play();
-  }
-  if (n == 4) {
-    song[currentSong].pause();
-    currentSong = 4;
-    need_meta_data = true;
-    song[currentSong].rewind();
-    song[currentSong].play();
   }
 }
