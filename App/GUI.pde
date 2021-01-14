@@ -8,16 +8,24 @@ void music_player_setup() {
   triangle(play_tri_1_x, play_tri_1_y, play_tri_2_x, play_tri_2_y, play_tri_3_x, play_tri_3_y);
 
   //fast forward button
-  //circle();
-  //triangle(,,,,,);
-  // triangle(,,,,,);
-  //line(,,,);
+  //rect(for_rect_x, for_rect_y, for_rect_width, for_rect_height);
+  fill(black);
+  circle(forward_cir_x, forward_cir_y, forward_cir_diameter);
+  fill(white);
+  //rect(for_rect_x_1, for_rect_y_1, for_rect_width_1, for_rect_height_1);
+  triangle(for_tri_1_x, for_tri_1_y, for_tri_2_x, for_tri_2_y, for_tri_3_x, for_tri_3_y);
+  triangle(for_tri_4_x, for_tri_4_y, for_tri_5_x, for_tri_5_y, for_tri_6_x, for_tri_6_y);
+  rect(for_lin_x_1, for_lin_y_1, for_lin_width, for_lin_height);
 
   //Rewind button
-  //circle(,,);
-  //triangle(,,,,,);
-  //triangle(,,,,,);
-  //line(,,,);
+  //rect(rev_rect_x, rev_rect_y, rev_rect_width, rev_rect_height);
+  fill(black);
+  circle(rev_cir_x, rev_cir_y, rev_cir_diameter);
+  //rect(rev_rect_x_1, rev_rect_y_1, rev_rect_width_1, rev_rect_height_1);
+  fill(white);
+  triangle(rev_tri_1_x, rev_tri_1_y, rev_tri_2_x, rev_tri_2_y, rev_tri_3_x, rev_tri_3_y);
+  triangle(rev_tri_4_x, rev_tri_4_y, rev_tri_5_x, rev_tri_5_y, rev_tri_6_x, rev_tri_6_y);
+  rect(rev_lin_x_1, rev_lin_y_1, rev_lin_width, rev_lin_height);
 
   //Next
   fill(black);
@@ -36,8 +44,10 @@ void music_player_setup() {
   rect(prev_lin_x_1, prev_lin_y_1, prev_lin_width_1, prev_lin_height_1);
 
   //Loop one
-  fill(white);
-  rect(loop_rect_x, loop_rect_y, loop_rect_width, loop_rect_height);
+
+  //Loop all
+  //fill(white);
+  //rect(loop_rect_x, loop_rect_y, loop_rect_width, loop_rect_height);
   fill(black);
   circle(loop_cir_x, loop_cir_y, loop_cir_diameter);
   //rect(loop_rect_x_1, loop_rect_y_1, loop_rect_width_1, loop_rect_height_1);
@@ -46,10 +56,6 @@ void music_player_setup() {
   fill(white);
   text(loop_all_text, loop_rect_x, loop_rect_y, loop_rect_width, loop_rect_height);
 
-  //Loop all
-  //circle(,,);
-  //rect(,,,);
-  //text(,,,,);
 
   //Volume up
   //circle(,,);
@@ -63,6 +69,7 @@ void music_player_setup() {
   //Quit button
   //rect(,,,);
   //text(,,,,);
+
 
   //Description
   textFont(font, 25); 

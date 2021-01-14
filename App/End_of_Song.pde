@@ -4,6 +4,7 @@ void  end_of_song() {
     song[currentSong].pause();
     song[currentSong].rewind();
     currentSong = 1;
+    song[currentSong].rewind();
     song[currentSong].play();
     need_meta_data = true;
   }
@@ -12,6 +13,7 @@ void  end_of_song() {
     song[currentSong].pause();
     song[currentSong].rewind();
     currentSong = 2;
+    song[currentSong].rewind();
     song[currentSong].play();
     need_meta_data = true;
   }
@@ -20,6 +22,7 @@ void  end_of_song() {
     song[currentSong].pause();
     song[currentSong].rewind();
     currentSong = 3;
+    song[currentSong].rewind();
     song[currentSong].play();
     need_meta_data = true;
   }
@@ -28,6 +31,7 @@ void  end_of_song() {
     song[currentSong].pause();
     song[currentSong].rewind();
     currentSong = 4;
+    song[currentSong].rewind();
     song[currentSong].play();
     need_meta_data = true;
   }
@@ -37,7 +41,7 @@ void  end_of_song() {
       song[currentSong].pause();
       song[currentSong].rewind();
       currentSong = 0;
-      song[0].play();
+      song[0].rewind();
       song[0].play();
       need_meta_data = true;
     }
