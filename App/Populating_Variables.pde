@@ -90,6 +90,7 @@ void populating_variables() {
   prev_rect_width_1 = displayWidth*33/1000;
   prev_rect_height_1 = displayHeight*17/640;
 
+
   //Loop All Button
   loop_cir_x = displayWidth*32/40;
   loop_cir_y = displayHeight*18/20;
@@ -99,6 +100,28 @@ void populating_variables() {
   loop_rect_y = displayHeight*555/640;
   loop_rect_width = displayWidth*37/1000;
   loop_rect_height = displayHeight*43/640;
+  
+  loop_rect_x_1 = displayWidth*126/160;
+  loop_rect_y_1 = displayHeight*560/640;
+  loop_rect_width_1 = displayWidth*25/1000;
+  loop_rect_height_1 = displayHeight*32/640;
+  
+  
+  //Loop One Button
+  loop_1_cir_x = displayWidth*36/40;
+  loop_1_cir_y = displayHeight*18/20;
+  loop_1_cir_diameter = displayWidth*1/27;
+  
+  loop_1_x = displayWidth*141/160;
+  loop_1_y = displayHeight*555/640;
+  loop_1_width = displayWidth*37/1000;
+  loop_1_height = displayHeight*43/640;
+  
+  loop_one_rect_x_1 = displayWidth*142/160;
+  loop_one_rect_y_1 = displayHeight*560/640;
+  loop_one_rect_width_1 = displayWidth*25/1000;
+  loop_one_rect_height_1 = displayHeight*32/640;
+ 
 
   //Description
   desc_x = displayWidth*1/4;
@@ -106,11 +129,13 @@ void populating_variables() {
   desc_width = displayWidth*1/2;
   desc_height = displayHeight*1/20;
 
+
   //Timer
   time_x = displayWidth*38/50;
   time_y = displayHeight*27/40;
   time_width = displayWidth*1/15;
   time_height = displayHeight*1/20;
+
 
   //Fast Forward
   forward_cir_x = displayWidth*28/40;
@@ -146,6 +171,7 @@ void populating_variables() {
   for_rect_width_1 = displayWidth*25/1000;
   for_rect_height_1 = displayHeight*17/640;
 
+
   //Rewind Button
   rev_cir_x = displayWidth*12/40;
   rev_cir_y = displayHeight*18/20;
@@ -180,6 +206,7 @@ void populating_variables() {
   rev_rect_width_1 = displayWidth*25/1000;
   rev_rect_height_1 = displayHeight*17/640;
 
+
   //Progress Bar
   progress_bar_x_start = displayWidth*1/4;
   progress_bar_x_end = displayWidth*3/4;
@@ -204,6 +231,7 @@ void populating_variables() {
   recalculate_time = false;
   loop_all = false;
   selected = false;
+  loop_selected = false;
 
   mini_back_x = displayWidth*1/5;
   mini_back_y = displayHeight*1/10;
@@ -211,4 +239,5 @@ void populating_variables() {
   mini_back_height = displayHeight*1/2;
 
   loop_all_text = "LOOP ALL";
+  loop_one_text = "LOOP ONE";
 }

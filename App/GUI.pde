@@ -44,6 +44,15 @@ void music_player_setup() {
   rect(prev_lin_x_1, prev_lin_y_1, prev_lin_width_1, prev_lin_height_1);
 
   //Loop one
+  //fill(white);
+  //rect(loop_1_x, loop_1_y, loop_1_width, loop_1_height);
+  fill(black);
+  circle(loop_1_cir_x, loop_1_cir_y, loop_1_cir_diameter);
+  //rect(loop_one_rect_x_1, loop_one_rect_y_1, loop_one_rect_width_1, loop_one_rect_height_1);
+  fill(white);
+  textFont(font, 15); 
+  textAlign(CENTER, CENTER);
+  text(loop_one_text, loop_1_x, loop_1_y, loop_1_width, loop_1_height);
 
   //Loop all
   //fill(white);
@@ -53,7 +62,7 @@ void music_player_setup() {
   //rect(loop_rect_x_1, loop_rect_y_1, loop_rect_width_1, loop_rect_height_1);
   textFont(font, 15); 
   textAlign(CENTER, CENTER);
-  fill(white);
+  fill(black);
   text(loop_all_text, loop_rect_x, loop_rect_y, loop_rect_width, loop_rect_height);
 
 

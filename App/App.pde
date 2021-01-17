@@ -59,6 +59,11 @@ float rev_lin_x_1, rev_lin_y_1, rev_lin_width, rev_lin_height;
 float rev_rect_x, rev_rect_y, rev_rect_width, rev_rect_height;
 float rev_rect_x_1, rev_rect_y_1, rev_rect_width_1, rev_rect_height_1;
 //
+float loop_1_x, loop_1_y, loop_1_width, loop_1_height;
+float loop_1_cir_x, loop_1_cir_y, loop_1_cir_diameter;
+float loop_one_rect_x_1, loop_one_rect_y_1, loop_one_rect_width_1, loop_one_rect_height_1;
+String loop_one_text;
+//
 String list_1;
 String list_2;
 String list_3;
@@ -78,6 +83,8 @@ boolean reset_time;
 boolean recalculate_time;
 boolean loop_all;
 boolean selected;
+boolean loop_one;
+boolean loop_selected;
 //
 int number_of_songs = 5;
 int number_of_acc_songs;
@@ -102,6 +109,8 @@ float progress_back_x, progress_back_y, progress_back_width, progress_back_heigh
 PFont font;
 //
 String absolute;
+//
+//float dB;
 
 ControlP5 cp5;
 ControlFont cf1;
@@ -109,6 +118,8 @@ ControlFont cf1;
 Minim  minim; //creates object to access all functions
 AudioPlayer[] song = new AudioPlayer[number_of_songs]; 
 AudioMetaData[] song_meta_data = new AudioMetaData[number_of_songs];
+//Gain       gain;
+//AudioOutput out;
 
 void setup() {
   fullScreen();
@@ -122,6 +133,10 @@ void setup() {
   }
   music_player_setup();
   scrollable_list();
+  /* 
+   gain = new Gain(0.f);
+   out = minim.getLineOut();
+   */
 }
 
 void draw() {
@@ -135,23 +150,20 @@ void draw() {
   constant_gui();
   timer();
   retrieve_meta_data();
-  if (loop_all == true) {
-    fill(grey);
-    circle(loop_cir_x, loop_cir_y, loop_cir_diameter);
-    textFont(font, 15); 
-    textAlign(CENTER, CENTER);
-    fill(white);
-    text(loop_all_text, loop_rect_x, loop_rect_y, loop_rect_width, loop_rect_height);
-    selected = true;
-  }
-  if (loop_all == false) {
-    fill(black);
-    circle(loop_cir_x, loop_cir_y, loop_cir_diameter);
-    textFont(font, 15); 
-    textAlign(CENTER, CENTER);
-    fill(white);
-    text(loop_all_text, loop_rect_x, loop_rect_y, loop_rect_width, loop_rect_height);
-  }
+  selected();
+  /*
+  stroke(0);
+   // draw the waveforms
+   for ( int i = 0; i < out.bufferSize() - 1; i++ )
+   {
+   // find the x position of each buffer value
+   float x1  =  map( i, 0, out.bufferSize(), displayWidth*1/4, displayWidth*1/2);
+   float x2  =  map( i+1, 0, out.bufferSize(), displayWidth*1/4, displayWidth*1/2);
+   // draw a line from one buffer position to the next for both channels
+   line( x1, displayHeight*1/20 + out.left.get(i)*100, x2, 50 + out.left.get(i+1)*100);
+   //line( x1, 150 + out.right.get(i)*50, x2, 150 + out.right.get(i+1)*50);
+   }
+   */
 }
 
 void mousePressed() {
@@ -161,18 +173,36 @@ void mousePressed() {
   loop_all_button();
   forward_button();
   rewind_button();
+  loop_one_button();
 }
 
 void keyPressed() {
-  if (key == 'f' || key == 'F') {
-    song[currentSong].skip(5000);
+  if (key == 'l' || key == 'L') {
+    if (loop_selected == false) {
+      loop_one = true;
+      println(loop_selected);
+      loop_selected = true;
+    }
+  }
+  if (key == 's') {
+    if (loop_selected == true) {
+      loop_one = false;
+      println(loop_selected);
+      loop_selected = false;
+    }
   }
 }
 
 void mouseReleased() {
-  if (mouseX > progress_bar_x_start && mouseX <  progress_bar_x_end && mouseY >= progress_bar_y && mouseY <= progress_bar_y+5) {
+  if (mouseX >= progress_bar_x_start && mouseX <= progress_bar_x_end && mouseY >= progress_bar_y && mouseY <= progress_bar_y+5) {
     position = int( map(mouseX, progress_bar_x_start, progress_bar_x_end, 0, song[currentSong].length() ) );
-    song[currentSong].cue( position );
-  } else {
+    song[currentSong].cue(position);
   }
+  /*
+ if (mouseX > displayWidth*0 && mouseX < displayWidth*1/4) {
+   dB = map(mouseX, displayWidth*0, displayWidth*25/100, -17, 3);
+   gain.setValue(dB);
+   text("Current Gain is " + dB + " dB.", 10, 20);
+   }
+   */
 }

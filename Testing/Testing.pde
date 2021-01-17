@@ -1,66 +1,77 @@
-import ddf.minim.*; 
-import ddf.minim.signals.*; 
-import ddf.minim.analysis.*; 
-import ddf.minim.effects.*;
 
-Minim minim; 
-AudioPlayer song; 
-AudioMetaData meta;
-int songLength;
-int TimeStamp = 45;
-float progress_bar_x_start, progress_bar_x_end, progress_bar_y, progress_bar_width, progress_bar_height;
-float progress_back_x, progress_back_y, progress_back_width, progress_back_height;
-void setup() {
+import ddf.minim.*;
+import ddf.minim.ugens.*;
+
+float dB;
+
+// declare everything we need to play our file
+Minim minim;
+FilePlayer filePlayer;
+Gain       gain;
+AudioOutput out;
+
+// you can use your own file by putting it in the data directory of this sketch
+// and changing the value assigned to fileName here.
+String fileName = "../App//Aaron Smith - Dancin (KRONO Remix).mp3";
+
+void setup()
+{
+  // setup the size of the app
   fullScreen();
-  minim = new Minim(this);
-  song = minim.loadFile("../App//Aaron Smith - Dancin (KRONO Remix).mp3");
-  meta = song.getMetaData();
-  song.loop();
-  progress_bar_x_start = displayWidth*1/2;
-  progress_bar_x_end = displayWidth*3/4;
-  progress_bar_y = displayHeight*5/36;
-  progress_bar_width = displayWidth*1/4;
-  progress_bar_height = displayHeight*1/135;
-  
-  progress_back_x = displayWidth*1/2;
-  progress_back_y = displayHeight*1/10;
-  progress_back_width = displayWidth*1/2;
-  progress_back_height = displayHeight*1/10;
-  
-  
-}
-void draw() {
-  stroke(0);
-  fill(#FFFFFF);
-  //rect(progress_bar_x_start, progress_bar_y, progress_bar_width, progress_bar_height);
-  //background(#FFFFFF);
-  noStroke();
-  rect(progress_back_x, progress_back_y, progress_back_width, progress_back_height);
-  fill(255); 
-  strokeWeight(1);
-  fill(0);
-  strokeWeight(4);
-  stroke(204);
-  line(progress_bar_x_start, progress_bar_y ,  progress_bar_x_end, progress_bar_y ); //where the progress bar should end
-  stroke(0);
 
-  TimeStamp = int( map(song.position(), 0, song.length(), progress_bar_x_start,  progress_bar_x_end));
-  line(progress_bar_x_start, progress_bar_y , TimeStamp, progress_bar_y );
+  // create our Minim object for loading audio
+  minim = new Minim(this);
+  // this opens the file and puts it in the "play" state.                           
+  filePlayer = new FilePlayer( minim.loadFileStream(fileName) );
+  // and then we'll tell the recording to loop indefinitely
+  filePlayer.loop();
+
+  // start the Gain at 0 dB, which means no change in amplitude
+  gain = new Gain(0.f);
+
+  // get a line out from Minim. It's important that the file is the same audio format 
+  // as our output (i.e. same sample rate, number of channels, etc).
+  out = minim.getLineOut();
+
+  // patch the file player to the output
+  filePlayer.patch(gain).patch(out);
 }
-int position;
+
+// draw is run many times
+void draw()
+{
+  // erase the window to black
+  background(255);
+  // draw using a white stroke
+  stroke(0);
+  // draw the waveforms
+  for ( int i = 0; i < out.bufferSize() - 1; i++ )
+  {
+    // find the x position of each buffer value
+    float x1  =  map( i, 0, out.bufferSize(), displayWidth*1/4, displayWidth*1/2);
+    float x2  =  map( i+1, 0, out.bufferSize(), displayWidth*1/4, displayWidth*1/2);
+    // draw a line from one buffer position to the next for both channels
+    line( x1, displayHeight*1/20 + out.left.get(i)*100, x2, 50 + out.left.get(i+1)*100);
+    //line( x1, 150 + out.right.get(i)*50, x2, 150 + out.right.get(i+1)*50);
+  }
+  stroke(255);
+  text("Current Gain is " + dB + " dB.", 10, 20);
+  println("Current Gain is " + dB + " dB.", 10, 20);
+}
 void mouseReleased() {
-  if (mouseX > progress_bar_x_start && mouseX <  progress_bar_x_end && mouseY >= 147 && mouseY <= 155) {
-    position = int( map(mouseX, progress_bar_x_start, progress_bar_x_end, 0, song.length() ) );
-    song.cue( position );
-    println("true");
-  } else {
-    println("false");
+  // update the gain value. middle of the width will be the original amplitude 
+  // of the audio file, far right is twice as loud and far left is half as loud.
+  if (mouseX > displayWidth*0 && mouseX < displayWidth*1/4) {
+    dB = map(mouseX, displayWidth*0, displayWidth*25/100, -17, 3);
+    gain.setValue(dB);
+    text("Current Gain is " + dB + " dB.", 10, 20);
   }
 }
-/*
-void InitSong() { 
-  song.cue(song.length()); 
-  songLength = song.position(); 
-  song.cue(0);
-}
-*/
+/*void keyPressed() {
+ if (key == 'q') {
+ db = -10;
+ }
+ if (key == 'w') {
+ }
+ }
+ */
