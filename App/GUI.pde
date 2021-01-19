@@ -1,9 +1,10 @@
 void music_player_setup() {
   //play button
+  //fill(white);
   //rect(play_rect_x, play_rect_y, play_rect_width, play_rect_height);
   fill(black);
   circle(play_but_x, play_but_y, play_but_diameter);
-  //rect(play_rect_x_1, play_rect_y_1, play_rect_width_1, play_rect_height_1);
+  rect(play_rect_x_1, play_rect_y_1, play_rect_width_1, play_rect_height_1);
   fill(white);
   triangle(play_tri_1_x, play_tri_1_y, play_tri_2_x, play_tri_2_y, play_tri_3_x, play_tri_3_y);
 
@@ -66,18 +67,13 @@ void music_player_setup() {
   text(loop_all_text, loop_rect_x, loop_rect_y, loop_rect_width, loop_rect_height);
 
 
-  //Volume up
-  //circle(,,);
-  //line(,,,);
-  //line(,,,);
-
-  //Volume down
-  //circle(,,);
-  //line(,,,);
-
   //Quit button
-  //rect(,,,);
-  //text(,,,,);
+  fill(black);
+  rect(quit_rect_x, quit_rect_y, quit_rect_width, quit_rect_height);
+  fill(white);
+  textFont(font, 20); 
+  textAlign(CENTER, CENTER);
+  text(quit_text, quit_rect_x, quit_rect_y, quit_rect_width, quit_rect_height);
 
 
   //Description
@@ -86,5 +82,35 @@ void music_player_setup() {
   desc_text = song_meta_data[currentSong].fileName();
   fill(black);
   text(desc_text, desc_x, desc_y, desc_width, desc_height);
-  //meta_data();
+
+
+  //Mute 
+  //rect(mute_rect_x, mute_rect_y, mute_rect_width, mute_rect_height);
+  fill(black);
+  circle(mute_x, mute_y, mute_diameter);
+  fill(white);
+  textFont(font, 15); 
+  textAlign(CENTER, CENTER);
+  text(mute_text, mute_rect_1_x, mute_rect_1_y, mute_rect_1_width, mute_rect_1_height);
+  rect(mute_rect_1_x, mute_rect_1_y, mute_rect_1_width, mute_rect_1_height);
+
+  //Volume Up
+  //rect(volume_up_rect_x, volume_up_rect_y, volume_up_rect_width, volume_up_rect_height);
+  fill(black);
+  circle(volume_up_x, volume_up_y, volume_up_diameter);
+  fill(white);
+  //rect(volume_up_rect_1_x, volume_up_rect_1_y, volume_up_rect_1_width, volume_up_rect_1_height);
+  textFont(font, 25); 
+  textAlign(CENTER, CENTER);
+  text(volume_up_text, volume_up_rect_1_x, volume_up_rect_1_y, volume_up_rect_1_width, volume_up_rect_1_height);
+
+  //Volume Down
+  //rect(volume_down_rect_x, volume_down_rect_y, volume_down_rect_width, volume_down_rect_height);
+  fill(black);
+  circle(volume_down_x, volume_down_y, volume_down_diameter);
+  fill(white);
+  //rect(volume_down_rect_1_x, volume_down_rect_1_y, volume_down_rect_1_width, volume_down_rect_1_height);
+  textFont(font, 25); 
+  textAlign(CENTER, CENTER);
+  text(volume_down_text, volume_down_rect_1_x, volume_down_rect_1_y, volume_down_rect_1_width, volume_down_rect_1_height);
 }

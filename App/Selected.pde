@@ -33,4 +33,19 @@ void selected() {
     textAlign(CENTER, CENTER);
     text(loop_one_text, loop_1_x, loop_1_y, loop_1_width, loop_1_height);
   }
+  if (song[currentSong].isMuted()) {
+    fill(grey);
+    circle(mute_x, mute_y, mute_diameter);
+    fill(white);
+    textFont(font, 15); 
+    textAlign(CENTER, CENTER);
+    text(mute_text, mute_rect_1_x, mute_rect_1_y, mute_rect_1_width, mute_rect_1_height);
+  } else {
+    fill(black);
+    circle(mute_x, mute_y, mute_diameter);
+    fill(white);
+    textFont(font, 15); 
+    textAlign(CENTER, CENTER);
+    text(mute_text, mute_rect_1_x, mute_rect_1_y, mute_rect_1_width, mute_rect_1_height);
+  }
 }

@@ -14,18 +14,18 @@ void loop_one_button() {
         loop_selected = false;
       }
     }
-  }
-  if (mouseX > loop_rect_x_1 && mouseX < loop_rect_x_1 + loop_rect_width_1 && mouseY > loop_rect_y_1 && mouseY < loop_rect_y_1 + loop_rect_height_1) {
     colour = get(x, y);
     if (colour == white) {
-      loop_all = false;
-      selected = false;
-      if (loop_one == false) {
-        loop_one = true;
-      }
-      if (loop_selected == true) {
-        loop_one = true;
-        loop_selected = false;
+      if (mouseX > loop_one_rect_x_1 && mouseX < loop_one_rect_x_1 + loop_one_rect_width_1 && mouseY > loop_one_rect_y_1 && mouseY < loop_one_rect_y_1 + loop_one_rect_height_1) {
+        loop_all = false;
+        selected = false;
+        if (loop_one == false) {
+          loop_one = true;
+        }
+        if (loop_selected == true) {
+          loop_one = true;
+          loop_selected = false;
+        }
       }
     }
   }

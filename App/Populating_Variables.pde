@@ -100,28 +100,28 @@ void populating_variables() {
   loop_rect_y = displayHeight*555/640;
   loop_rect_width = displayWidth*37/1000;
   loop_rect_height = displayHeight*43/640;
-  
+
   loop_rect_x_1 = displayWidth*126/160;
   loop_rect_y_1 = displayHeight*560/640;
   loop_rect_width_1 = displayWidth*25/1000;
   loop_rect_height_1 = displayHeight*32/640;
-  
-  
+
+
   //Loop One Button
   loop_1_cir_x = displayWidth*36/40;
   loop_1_cir_y = displayHeight*18/20;
   loop_1_cir_diameter = displayWidth*1/27;
-  
+
   loop_1_x = displayWidth*141/160;
   loop_1_y = displayHeight*555/640;
   loop_1_width = displayWidth*37/1000;
   loop_1_height = displayHeight*43/640;
-  
+
   loop_one_rect_x_1 = displayWidth*142/160;
   loop_one_rect_y_1 = displayHeight*560/640;
   loop_one_rect_width_1 = displayWidth*25/1000;
   loop_one_rect_height_1 = displayHeight*32/640;
- 
+
 
   //Description
   desc_x = displayWidth*1/4;
@@ -220,6 +220,74 @@ void populating_variables() {
   progress_back_height = displayHeight*1/10;
 
 
+  //Quit Button
+  quit_rect_x = displayWidth*37/40;
+  quit_rect_y = displayHeight*1/30;
+  quit_rect_width = displayWidth*1/20;
+  quit_rect_height = displayHeight*1/30;
+
+
+  //Mute Button
+  mute_x = displayWidth*6/40;
+  mute_y = displayHeight*18/20;
+  mute_diameter = displayWidth*1/27;
+
+  mute_rect_x = displayWidth*63/480;
+  mute_rect_y = displayHeight*555/640;
+  mute_rect_width = displayWidth*37/1000;
+  mute_rect_height = displayHeight*43/640;
+
+  mute_rect_1_x = displayWidth*66/480;
+  mute_rect_1_y = displayHeight*560/640;
+  mute_rect_1_width = displayWidth*25/1000;
+  mute_rect_1_height = displayHeight*32/640;
+
+
+  //Wave Form Background
+  sound_back_x = displayWidth*0;
+  sound_back_y = displayHeight*25/50;
+  sound_back_width = displayWidth;
+  sound_back_height = displayHeight*8/50;
+
+
+  //Volume Up
+  volume_up_x = displayWidth*9/40;
+  volume_up_y = displayHeight*18/20;
+  volume_up_diameter = displayWidth*1/35;
+
+  volume_up_rect_x = displayWidth*101/480;
+  volume_up_rect_y = displayHeight*560/640;
+  volume_up_rect_width = displayWidth*29/1000;
+  volume_up_rect_height = displayHeight*33/640;
+
+  volume_up_rect_1_x = displayWidth*103/480;
+  volume_up_rect_1_y = displayHeight*565/640;
+  volume_up_rect_1_width = displayWidth*21/1000;
+  volume_up_rect_1_height = displayHeight*20/640;
+
+
+  //Volume Down
+  volume_down_x = displayWidth*3/40;
+  volume_down_y = displayHeight*18/20;
+  volume_down_diameter = displayWidth*1/35;
+
+  volume_down_rect_x = displayWidth*29/480;
+  volume_down_rect_y = displayHeight*560/640;
+  volume_down_rect_width = displayWidth*29/1000;
+  volume_down_rect_height = displayHeight*33/640;
+
+  volume_down_rect_1_x = displayWidth*31/480;
+  volume_down_rect_1_y = displayHeight*565/640;
+  volume_down_rect_1_width = displayWidth*21/1000;
+  volume_down_rect_1_height = displayHeight*20/640;
+  
+  //Volume 
+  volume_x = displayWidth*5/40;
+  volume_y = displayHeight*525/640;
+  volume_width = displayWidth*1/20;
+  volume_height = displayHeight*1/30;
+
+
   font = createFont("Arial", 55);
 
   number_of_acc_songs = number_of_songs - 1;
@@ -234,10 +302,15 @@ void populating_variables() {
   loop_selected = false;
 
   mini_back_x = displayWidth*1/5;
-  mini_back_y = displayHeight*1/10;
-  mini_back_width = displayWidth*3/4;
+  mini_back_y = displayHeight*0;
+  mini_back_width = displayWidth*1/2;
   mini_back_height = displayHeight*1/2;
 
   loop_all_text = "LOOP ALL";
   loop_one_text = "LOOP ONE";
+  quit_text = "QUIT";
+  mute_text = "MUTE";
+  volume_up_text = "+";
+  volume_down_text = "-";
+  n = 0;
 }

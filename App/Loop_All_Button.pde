@@ -14,17 +14,17 @@ void loop_all_button() {
         selected = false;
       }
     }
-  }
-  if (mouseX > loop_rect_x_1 && mouseX < loop_rect_x_1 + loop_rect_width_1 && mouseY > loop_rect_y_1 && mouseY < loop_rect_y_1 + loop_rect_height_1) {
     if (colour == white) {
-      loop_one = false;
-      loop_selected = false;
-      if (loop_all == false) {
-        loop_all = true;
-      }
-      if (selected == true) {
-        loop_all = false;
-        selected = false;
+      if (mouseX > loop_rect_x_1 && mouseX < loop_rect_x_1 + loop_rect_width_1 && mouseY > loop_rect_y_1 && mouseY < loop_rect_y_1 + loop_rect_height_1) {
+        loop_one = false;
+        loop_selected = false;
+        if (loop_all == false) {
+          loop_all = true;
+        }
+        if (selected == true) {
+          loop_all = false;
+          selected = false;
+        }
       }
     }
   }

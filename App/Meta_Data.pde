@@ -4,7 +4,7 @@ void meta_data() {
   println("Length (in seconds): ", song_meta_data[currentSong].length()/1000 );
   println("Length (in minutes & seconds): ", (song_meta_data[currentSong].length()/1000)/60, " minute", (song_meta_data[currentSong].length()/1000)-((song_meta_data[currentSong].length()/1000)/60 * 60), " seconds" );
   //Sometimes available
-  println("Title: ", song_meta_data[currentSong].title() );
+  println("Title: ", song_meta_data[currentSong].title());
   println("Author: ", song_meta_data[currentSong].author() ); //Song Writer or Performer
   println("Album: ", song_meta_data[currentSong].album() );
   println("Date Release: ", song_meta_data[currentSong].date() );

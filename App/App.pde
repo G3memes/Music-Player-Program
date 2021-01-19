@@ -64,6 +64,27 @@ float loop_1_cir_x, loop_1_cir_y, loop_1_cir_diameter;
 float loop_one_rect_x_1, loop_one_rect_y_1, loop_one_rect_width_1, loop_one_rect_height_1;
 String loop_one_text;
 //
+float mute_x, mute_y, mute_diameter;
+float mute_rect_x, mute_rect_y, mute_rect_width, mute_rect_height;
+float mute_rect_1_x, mute_rect_1_y, mute_rect_1_width, mute_rect_1_height;
+String mute_text;
+//
+float volume_up_x, volume_up_y, volume_up_diameter;
+float volume_up_rect_x, volume_up_rect_y, volume_up_rect_width, volume_up_rect_height;
+float volume_up_rect_1_x, volume_up_rect_1_y, volume_up_rect_1_width, volume_up_rect_1_height;
+String volume_up_text;
+//
+float volume_down_x, volume_down_y, volume_down_diameter;
+float volume_down_rect_x, volume_down_rect_y, volume_down_rect_width, volume_down_rect_height;
+float volume_down_rect_1_x, volume_down_rect_1_y, volume_down_rect_1_width, volume_down_rect_1_height;
+String volume_down_text;
+//
+float volume_x, volume_y, volume_width, volume_height;
+String volume_text;
+//
+float quit_rect_x, quit_rect_y, quit_rect_width, quit_rect_height;
+String quit_text;
+//
 String list_1;
 String list_2;
 String list_3;
@@ -105,6 +126,10 @@ int TimeStamp = 0;
 int position;
 float progress_bar_x_start, progress_bar_x_end, progress_bar_y, progress_bar_width, progress_bar_height;
 float progress_back_x, progress_back_y, progress_back_width, progress_back_height;
+int n;
+String volume;
+//
+float sound_back_x, sound_back_y, sound_back_width, sound_back_height;
 //
 PFont font;
 //
@@ -118,25 +143,18 @@ ControlFont cf1;
 Minim  minim; //creates object to access all functions
 AudioPlayer[] song = new AudioPlayer[number_of_songs]; 
 AudioMetaData[] song_meta_data = new AudioMetaData[number_of_songs];
-//Gain       gain;
+//Gain  gain;
 //AudioOutput out;
 
 void setup() {
   fullScreen();
   populating_variables();
-  frameRate(60);
+  frameRate(120);
   background(white);
   load_songs();
   instructions();
-  for (int i = currentSong; i<number_of_songs; i++) {
-    song_meta_data[i] = song[i].getMetaData();
-  }
   music_player_setup();
   scrollable_list();
-  /* 
-   gain = new Gain(0.f);
-   out = minim.getLineOut();
-   */
 }
 
 void draw() {
@@ -151,19 +169,8 @@ void draw() {
   timer();
   retrieve_meta_data();
   selected();
-  /*
-  stroke(0);
-   // draw the waveforms
-   for ( int i = 0; i < out.bufferSize() - 1; i++ )
-   {
-   // find the x position of each buffer value
-   float x1  =  map( i, 0, out.bufferSize(), displayWidth*1/4, displayWidth*1/2);
-   float x2  =  map( i+1, 0, out.bufferSize(), displayWidth*1/4, displayWidth*1/2);
-   // draw a line from one buffer position to the next for both channels
-   line( x1, displayHeight*1/20 + out.left.get(i)*100, x2, 50 + out.left.get(i+1)*100);
-   //line( x1, 150 + out.right.get(i)*50, x2, 150 + out.right.get(i+1)*50);
-   }
-   */
+  wave_form();
+  volume();
 }
 
 void mousePressed() {
@@ -174,23 +181,10 @@ void mousePressed() {
   forward_button();
   rewind_button();
   loop_one_button();
-}
-
-void keyPressed() {
-  if (key == 'l' || key == 'L') {
-    if (loop_selected == false) {
-      loop_one = true;
-      println(loop_selected);
-      loop_selected = true;
-    }
-  }
-  if (key == 's') {
-    if (loop_selected == true) {
-      loop_one = false;
-      println(loop_selected);
-      loop_selected = false;
-    }
-  }
+  quit_button();
+  mute_button();
+  volume_up();
+  volume_down();
 }
 
 void mouseReleased() {
@@ -198,11 +192,4 @@ void mouseReleased() {
     position = int( map(mouseX, progress_bar_x_start, progress_bar_x_end, 0, song[currentSong].length() ) );
     song[currentSong].cue(position);
   }
-  /*
- if (mouseX > displayWidth*0 && mouseX < displayWidth*1/4) {
-   dB = map(mouseX, displayWidth*0, displayWidth*25/100, -17, 3);
-   gain.setValue(dB);
-   text("Current Gain is " + dB + " dB.", 10, 20);
-   }
-   */
 }

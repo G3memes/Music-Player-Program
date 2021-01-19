@@ -30,13 +30,11 @@ void play_button() {
   }
   if (mouseX > play_rect_x_1 && mouseX < play_rect_x_1 + play_rect_width_1 && mouseY > play_rect_y_1 && mouseY < play_rect_y_1 + play_rect_height_1) {
     colour = get(x, y);
-    if (song[currentSong].isPlaying()) {
-      if (colour == white) {
+    if (colour == white) {
+      if (song[currentSong].isPlaying()) {
         song[currentSong].pause();
         need_meta_data = true;
-      }
-    } else {
-      if (colour == white) {
+      } else {
         if (loop_all == false) {
           song[currentSong].play();
           need_meta_data = true;
